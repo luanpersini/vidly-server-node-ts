@@ -1,0 +1,27 @@
+version: "3"
+services:
+  mongo:
+    container_name: mongo-container
+    image: mongo:3
+    restart: always
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27018:27017"
+  api:
+    container_name: api-container
+    build: .
+    image: node:14
+    working_dir: /usr/src/vidly-ts
+    restart: always
+    command: bash -c "npm install --only=prod && npm run debug"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/vidly-ts
+    volumes:
+      - ./dist/:/usr/src/vidly-ts/dist/     
+      - ./package.json:/usr/src/vidly-ts/package.json
+    ports:
+      - "5051:5051"  
+      - "9222:9222"
+    links:
+      - mongo

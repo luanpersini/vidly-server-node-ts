@@ -38,3 +38,7 @@ Vidly is a movie rent plataform where you can manage movies, customers, rents an
 **Archievements:**
 
 *comming soon*
+
+**Credits:**
+
+The original app was build by Mosh. You can find his courses at: https://codewithmosh.com/
