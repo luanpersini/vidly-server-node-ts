@@ -5,16 +5,18 @@ Create and persist a new **genre**.
 ## Success
 
 1. - [ ] Receive a **POST** request on route **/api/add-genre**
-2. - [ ] **Check** if there is already an genre with the given name
-3. - [ ] Create the new **genre** 
-4. - [ ] Return **200** with the created genre data
+2. - [ ] **Validate** the requested data
+3. - [ ] **Check** if there is already an genre with the given name
+4. - [ ] Create the new **genre** 
+5. - [ ] Return **Ok** with the created genre data
 <br/>
 
 ## Exceptions
 
-1. - [ ] Return error **404** if the api dosent exist
-2. - [ ] Return error **403** if there is already an genre with the given name 
-3. - [ ] Return error **500** if something fail while trying to create the new genre
+1. - [ ] Return **NotFound** if the api dosent exist
+2. - [ ] Return **BadRequest** if validation returns an error
+3. - [ ] Return **Forbidden** if there is already an genre with the given name 
+4. - [ ] Return **Unexpected Error** if something fail while trying to create the new genre
 
 - infra
   - Server

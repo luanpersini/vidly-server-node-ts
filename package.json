@@ -61,6 +61,7 @@
     "node": "14.x"
   },
   "_moduleAliases": {
-    "@": "dist"
+    "@": "dist",
+    "@genres": "dist/core/components/genres"
   }
 }
