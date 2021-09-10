@@ -1,21 +1,27 @@
 import { HttpRequest, Validation } from '@/common/interfaces'
+import { badRequest, forbidden } from '@/common/helpers/http-helper'
 
+import { AddGenre } from '@genres/usecases/add-genre/add-genre'
 import { AddGenreController } from './add-genre-controller'
+import { GenreExistsError } from '@/common/errors/genre-exists-error'
 import { MissingParamError } from '@/common/errors'
-import { badRequest } from '@/common/helpers/http-helper'
+import { mockAddGenre } from '../../../tests.mocks'
 import { mockValidation } from '@/tests/mock-validation'
 
 type SutTypes = {
-  sut: AddGenreController 
+  sut: AddGenreController
   validationStub: Validation
+  addGenreStub: AddGenre
 }
 
-const makeSut = (): SutTypes => {  
+const makeSut = (): SutTypes => {
   const validationStub = mockValidation()
-  const sut = new AddGenreController(validationStub)
+  const addGenreStub = mockAddGenre()
+  const sut = new AddGenreController(validationStub, addGenreStub)
   return {
     sut,
-    validationStub
+    validationStub,
+    addGenreStub
   }
 }
 const makeFakeRequest = (): HttpRequest => ({
@@ -24,19 +30,24 @@ const makeFakeRequest = (): HttpRequest => ({
   }
 })
 
-
 describe('AddGenreController', () => {
-  test('Should call Validation with correct value', async () => {
+  test('Should call Validation with correct values', async () => {
     const { sut, validationStub } = makeSut()
     const validateSpy = jest.spyOn(validationStub, 'validate')
     const httpRequest = makeFakeRequest()
     await sut.handle(httpRequest)
     expect(validateSpy).toHaveBeenCalledWith(httpRequest.body)
   })
-  test('Should return 400 if Validation returns an error', async () => {
+  test('Return BadRequest if validation returns an error', async () => {
     const { sut, validationStub } = makeSut()
     jest.spyOn(validationStub, 'validate').mockReturnValueOnce(new MissingParamError('any_field'))
     const httpResponse = await sut.handle(makeFakeRequest())
     expect(httpResponse).toEqual(badRequest(new MissingParamError('any_field')))
+  })
+  test('Should Return Forbidden if there is already an genre with the given name', async () => {
+    const { sut, addGenreStub } = makeSut()
+    jest.spyOn(addGenreStub, 'add').mockReturnValueOnce(Promise.resolve(null))
+    const httpResponse = await sut.handle(makeFakeRequest())
+    expect(httpResponse).toEqual(forbidden(new GenreExistsError()))
   })
 })
