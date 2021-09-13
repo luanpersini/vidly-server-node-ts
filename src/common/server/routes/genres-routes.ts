@@ -1,4 +1,4 @@
-import { AddGenreController } from '@/core/components/genres/user-interface/api.controllers/add-genre/add-genre-controller'
+import { AddGenreController } from '@/core/components/genres/user-interface/ui.api.controllers/add-genre/add-genre-controller'
 import { Router } from 'express'
 import { routeAdapter } from '@/infra/adapters/express-route-adapter'
 

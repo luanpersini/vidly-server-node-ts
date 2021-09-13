@@ -30,6 +30,10 @@ Vidly is a movie rent plataform where you can manage movies, customers, rents an
 - Git Commit Msg Linter
 - Jest
 
+## Tests
+
+- files .spec.ts: unit tests
+- files .test.ts: integration tests
 
 ## What was archieve so far - challanges
 

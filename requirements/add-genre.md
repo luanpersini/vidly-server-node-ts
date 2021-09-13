@@ -6,9 +6,8 @@ Create and persist a new **genre**.
 
 1. - [ ] Receive a **POST** request on route **/api/add-genre**
 2. - [ ] **Validate** the requested data
-3. - [ ] **Check** if there is already an genre with the given name
-4. - [ ] Create the new **genre** 
-5. - [ ] Return **Ok** with the created genre data
+3. - [ ] Create the new **genre** 
+4. - [ ] Return **Ok** with the created genre data
 <br/>
 
 ## Exceptions
@@ -27,11 +26,10 @@ Create and persist a new **genre**.
   - components
     - component-name
       - domain
-        [x] models (entities, aggregates e value objects)
-        [ ] services
+        [x] models (entities, aggregates e value objects)        
       - usecase-name
-        [ ] usecase interface
-        [ ] usecase implementation
+        [x] usecase interface
+        [x] usecase implementation
         [ ] usecase test
         [ ] infra.usecase-name.factory
       - repositories

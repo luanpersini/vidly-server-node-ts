@@ -63,5 +63,5 @@
   "_moduleAliases": {
     "@": "dist",
     "@genres": "dist/core/components/genres"
-  }
+  } 
 }

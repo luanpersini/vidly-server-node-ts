@@ -1,11 +1,11 @@
 import { HttpRequest, Validation } from '@/common/interfaces'
-import { badRequest, forbidden, serverError } from '@/common/helpers/http-helper'
+import { badRequest, forbidden, ok, serverError } from '@/common/helpers/http-helper'
+import { mockAddGenre, mockGenre } from '../../tests.mocks'
 
 import { AddGenre } from '@genres/usecases/add-genre/add-genre'
 import { AddGenreController } from './add-genre-controller'
 import { GenreExistsError } from '@/common/errors/genre-exists-error'
 import { MissingParamError } from '@/common/errors'
-import { mockAddGenre } from '../../../tests.mocks'
 import { mockValidation } from '@/tests/mock-validation'
 import { throwError } from '@/tests/test-helper'
 
@@ -56,5 +56,11 @@ describe('AddGenreController', () => {
     jest.spyOn(addGenreStub, 'add').mockImplementationOnce(throwError)
     const httpResponse = await sut.handle(makeFakeRequest())
     expect(httpResponse).toEqual(serverError(new Error()))
+  })
+  test('should Return **Ok** with the created genre data', async () => {
+    const { sut, addGenreStub } = makeSut()
+    jest.spyOn(addGenreStub, 'add').mockReturnValueOnce(Promise.resolve(mockGenre()))
+    const httpResponse = await sut.handle(makeFakeRequest())
+    expect(httpResponse).toEqual(ok(mockGenre()))
   })
 })
