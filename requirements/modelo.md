@@ -1,14 +1,12 @@
 # Título
 
 > ## Caso de sucesso
-
-1. ✅ Valida se a requisição foi feita por um **usuário**
-1. - [x] Recebe uma requisição do tipo **POST** na rota **/api/open-account**
+✅ ⛔️
+1. - [ ] Receive a **POST** request on route **/api/add-genre**
 
 > ## Exceções
 
-1. ⛔️ Retorna erro **404** se a API não existir
-1. - [x] Recebe uma requisição do tipo **POST** na rota **/api/open-account**
+1. - [ ] Return **BadRequest** if validation returns an error
 
 - infra
   - Server
@@ -27,15 +25,14 @@
         [ ] usecase test
         [ ] infra.usecase-name.factory
       - repositories
-        [ ] usecase-repository-i
+        [ ] component-repository-i
         - infra.repository-implementation
-          [ ] usecase-repository-mongo
-          [ ] usecase-repository-sql   
-      - user-interface
-          - Api.Controllers
+          [ ] component-repository-mongo
+          [ ] component-repository-sql    
+      - user-interface.api.controllers
               - controller-name           
                     [ ] controller
-                    [ ] controller tests                    
+                    [ ] controller test              
                   - infra.factories
                     [ ] controller-factory
                     [ ] validation factory

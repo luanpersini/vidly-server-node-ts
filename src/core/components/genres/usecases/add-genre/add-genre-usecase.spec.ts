@@ -11,6 +11,7 @@ type SutTypes = {
 
 const makeSut = (): SutTypes => {
   const genreRepositoryStub = mockGenreRepository()
+  // Success cenario: Spy on loadByName to return null
   jest.spyOn(genreRepositoryStub, 'loadByName').mockReturnValue(Promise.resolve(null))
   const sut = new AddGenreUsecase(genreRepositoryStub)
   return {

@@ -22,6 +22,7 @@ Create and persist a new **genre**.
     - config
       - routes
         [x] component-name  
+        [ ] component-name integration test
 - core
   - components
     - component-name
@@ -30,18 +31,18 @@ Create and persist a new **genre**.
       - usecase-name
         [x] usecase interface
         [x] usecase implementation
-        [ ] usecase test
-        [ ] infra.usecase-name.factory
+        [x] usecase test
+        [x] infra.usecase-name.factory
       - repositories
-        [ ] usecase-repository-i
+        [x] component-repository-i
         - infra.repository-implementation
-          [ ] usecase-repository-mongo
-          [ ] usecase-repository-sql   
+          [x] component-repository-mongo     
+          [ ] component-repository-mongo test     
       - user-interface
           - Api.Controllers
               - controller-name           
-                    [ ] controller
-                    [ ] controller tests                    
+                    [x] controller
+                    [x] controller test                    
                   - infra.factories
                     [ ] controller-factory
                     [ ] validation factory
