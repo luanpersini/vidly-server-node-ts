@@ -1,21 +1,19 @@
 import { AddGenre, AddGenreParams } from './add-genre';
 
-import { AddGenreRepository } from '../../repositories/add-genre-repository';
 import { GenreModel } from '../../domain/genre';
-import { LoadGenreByNameRepository } from '../../repositories/load-genre-by-name-repository';
+import { GenreRepository } from '@genres/repositories/genre-repository';
 
-export class AdGenreUSecase implements AddGenre {
+export class AddGenreUsecase implements AddGenre {
   constructor (
-    private readonly addGenreRepository: AddGenreRepository,
-    private readonly loadGenreByNameRepository: LoadGenreByNameRepository
+    private readonly GenreRepository: GenreRepository    
   ) {}
   async add (name: string): Promise<GenreModel>{    
-    const genre = await this.loadGenreByNameRepository.loadByName(name)
+    const genre = await this.GenreRepository.loadByName(name)
     if (!genre) {
-      const newGenre = await this.addGenreRepository.add(name)
+      const newGenre = await this.GenreRepository.add(name)
       return newGenre
     }
-    return null
+     return null
   }      
 }
 
