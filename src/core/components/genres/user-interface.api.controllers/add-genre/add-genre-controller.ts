@@ -1,5 +1,4 @@
 import { Controller, HttpRequest, HttpResponse, Validation } from '@/common/interfaces'
-import Joi, { ObjectSchema } from 'joi'
 import { badRequest, forbidden, ok, serverError } from '@/common/helpers/http-helper'
 
 import { AddGenre } from '@genres/usecases/add-genre/add-genre'
@@ -10,7 +9,7 @@ export class AddGenreController implements Controller {
   constructor(
     private readonly validation: Validation,
     private readonly addGenre: AddGenre,
-    private readonly validationSchema: ObjectSchema
+    private readonly validationSchema: object
   ) {}
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {

@@ -1,4 +1,4 @@
 export interface Validation {
-  validate (obj: any, schema: any): string
+  validate (obj: object, validationSchema: object): string
 }
 //use with: if (error) {return badRequest(new ValidationError(error))}

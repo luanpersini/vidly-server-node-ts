@@ -6,19 +6,21 @@ import { AddGenre } from '@genres/usecases/add-genre/add-genre'
 import { AddGenreController } from './add-genre-controller'
 import { GenreExistsError } from '@/common/errors/genre-exists-error'
 import { MissingParamError } from '@/common/errors'
+import { ValidationError } from '@/common/errors/validation-error'
 import { mockValidation } from '@/tests/mock-validation'
 import { throwError } from '@/tests/test-helper'
 
 type SutTypes = {
   sut: AddGenreController
   validationStub: Validation
-  addGenreStub: AddGenre
+  addGenreStub: AddGenre  
 }
 
 const makeSut = (): SutTypes => {
   const validationStub = mockValidation()
   const addGenreStub = mockAddGenre()
-  const sut = new AddGenreController(validationStub, addGenreStub)
+  const validationSchema = {}
+  const sut = new AddGenreController(validationStub, addGenreStub, validationSchema)
   return {
     sut,
     validationStub,
@@ -27,7 +29,7 @@ const makeSut = (): SutTypes => {
 }
 const makeFakeRequest = (): HttpRequest => ({
   body: {
-    genre: 'any_genre'
+    name: 'any_genre'
   }
 })
 
@@ -37,13 +39,13 @@ describe('AddGenreController', () => {
     const validateSpy = jest.spyOn(validationStub, 'validate')
     const httpRequest = makeFakeRequest()
     await sut.handle(httpRequest)
-    expect(validateSpy).toHaveBeenCalledWith(httpRequest.body)
+    expect(validateSpy).toHaveBeenCalledWith(httpRequest.body, {})
   })
   test('should Return **BadRequest** if validation returns an error', async () => {
     const { sut, validationStub } = makeSut()
-    jest.spyOn(validationStub, 'validate').mockReturnValueOnce(new MissingParamError('any_field'))
+    jest.spyOn(validationStub, 'validate').mockReturnValueOnce('any_error')
     const httpResponse = await sut.handle(makeFakeRequest())
-    expect(httpResponse).toEqual(badRequest(new MissingParamError('any_field')))
+    expect(httpResponse).toEqual(badRequest(new ValidationError('any_error')))
   })
   test('should Return **Forbidden** if there is already an genre with the given name', async () => {
     const { sut, addGenreStub } = makeSut()
