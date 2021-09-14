@@ -45,5 +45,4 @@ Create and persist a new **genre**.
                     [x] controller test                    
                   - infra.factories
                     [ ] controller-factory
-                    [ ] validation factory
-                    [ ] validation factory test   
+                    [ ] validationSchema inside controller-factory                     

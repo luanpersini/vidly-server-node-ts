@@ -1,7 +1,7 @@
 import { AddGenreController } from '../add-genre-controller'
 import { Controller } from '@/common/interfaces'
 import Joi from 'joi'
-import { makeAddGenreUsecase } from '@genres/usecases/add-genre/infra.add-genre-factory'
+import { makeAddGenreUsecase } from '@genres/usecases/add-genre/infra.add-genre-usecase-factory'
 import { makeValidation } from '@/common/validation/validate-factory'
 
 const validationSchema = Joi.object({
