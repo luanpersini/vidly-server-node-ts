@@ -12,7 +12,7 @@
     "debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/common/server/server.js",
     "up": "yarn run build && docker-compose up",
     "down": "docker-compose down",
-    "dev": "ts-node-dev --respawn --transpile-only src/common/server/server.js",    
+    "dev": "ts-node-dev --respawn --transpile-only src/common/server/server.js",
     "startd": "yarn run build && yarn debug",
     "test": "jest --passWithNoTests --silent --no-cache --runInBand",
     "test:verb": "jest --passWithNoTests --verbose --runInBand",
@@ -52,7 +52,9 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "joi": "^17.4.2",
     "module-alias": "^2.2.2",
     "mongodb": "^3.6.10",
     "nodemon": "^2.0.12"
@@ -63,5 +65,5 @@
   "_moduleAliases": {
     "@": "dist",
     "@genres": "dist/core/components/genres"
-  } 
+  }
 }
