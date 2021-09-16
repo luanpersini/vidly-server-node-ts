@@ -12,10 +12,9 @@ Create and persist a new **genre**.
 
 ## Exceptions
 
-1. - [ ] Return **NotFound** if the api dosent exist
-2. - [ ] Return **BadRequest** if validation returns an error
-3. - [ ] Return **Forbidden** if there is already an genre with the given name 
-4. - [ ] Return **Unexpected Error** if something fail while trying to create the new genre
+1. - [ ] Return **BadRequest** if validation returns an error
+2. - [ ] Return **Forbidden** if there is already an genre with the given name 
+3. - [ ] Return **Unexpected Error** if something fail while trying to create the new genre
 
 - infra
   - Server
@@ -36,13 +35,13 @@ Create and persist a new **genre**.
       - repositories
         [x] component-repository-i
         - infra.repository-implementation
-          [x] component-repository-mongo     
-          [ ] component-repository-mongo test     
+          [x] component-mongo-repository     
+          [ ] component-mongo-repository test     
       - user-interface
           - Api.Controllers
               - controller-name           
                     [x] controller
                     [x] controller test                    
                   - infra.factories
-                    [ ] controller-factory
-                    [ ] validationSchema inside controller-factory                     
+                    [x] controller-factory
+                    [x] validationSchema inside controller-factory                     

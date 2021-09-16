@@ -1,12 +1,11 @@
-import { mockGenre, mockGenreRepository } from '@genres/tests.mocks'
+import { mockGenreModel, mockGenreRepository } from '@genres/tests.mocks'
 
 import { AddGenreUsecase } from './add-genre-usecase'
-import { GenreRepository } from '@genres/repositories/genre-repository'
-import { throwError } from '@/tests/test-helper'
+import { GenresRepository } from '@/core/components/genres/repositories/genres-repository'
 
 type SutTypes = {
   sut: AddGenreUsecase
-  genreRepositoryStub: GenreRepository
+  genreRepositoryStub: GenresRepository
 }
 
 const makeSut = (): SutTypes => {
@@ -22,22 +21,22 @@ const makeSut = (): SutTypes => {
 const genre_name = 'any_name'
 
 describe('Genre Usecase', () => {
-  test('should call GenreRepository.loadByName with the correct values', async () => {
+  test('should call GenresRepository.loadByName with the correct values', async () => {
     const { sut, genreRepositoryStub } = makeSut()
     const Spy = jest.spyOn(genreRepositoryStub, 'loadByName')
     await sut.add(genre_name)
     expect(Spy).toHaveBeenCalledWith(genre_name)
   })
-    test('should return null case GenreRepository.loadByName doesnt return null', async () => {
+    test('should return null case GenresRepository.loadByName doesnt return null', async () => {
     //if this happens, a genre with the given name already exists
     const { sut, genreRepositoryStub } = makeSut()
     jest
       .spyOn(genreRepositoryStub, 'loadByName')
-      .mockReturnValueOnce(Promise.resolve(mockGenre()))
+      .mockReturnValueOnce(Promise.resolve(mockGenreModel()))
     const result = await sut.add(genre_name)
     expect(result).toBeNull()
   })
-  test('Should throw if GenreRepository.add throws', async () => {
+  test('Should throw if GenresRepository.add throws', async () => {
     const { sut, genreRepositoryStub } = makeSut()
     jest.spyOn(genreRepositoryStub, 'add').mockImplementationOnce(async () => {throw new Error()})
     const result = sut.add(genre_name)
@@ -46,6 +45,6 @@ describe('Genre Usecase', () => {
   test('should return the new genre on success', async () => {
     const { sut, genreRepositoryStub } = makeSut()    
     const result = await sut.add(genre_name)
-    expect(result).toEqual(mockGenre())
+    expect(result).toEqual(mockGenreModel())
   })
 })

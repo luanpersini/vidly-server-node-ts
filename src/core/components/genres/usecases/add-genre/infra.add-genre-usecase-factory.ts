@@ -1,5 +1,5 @@
 import { AddGenreUsecase } from './add-genre-usecase';
-import { GenreMongoRepository } from '@genres/repositories/infra.repository-implementation/genre-mongo-repository';
+import { GenreMongoRepository } from '@/core/components/genres/repositories/infra.genres-mongo-repository';
 
 export const makeAddGenreUsecase = (): AddGenreUsecase => {
   const genreRepository = new GenreMongoRepository()

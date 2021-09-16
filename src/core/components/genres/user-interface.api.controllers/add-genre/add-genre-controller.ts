@@ -14,10 +14,10 @@ export class AddGenreController implements Controller {
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {      
-      const error = this.validation.validate(httpRequest.body, this.validationSchema)     
+      const error = this.validation.validate(httpRequest.body, this.validationSchema) 
       if (error) {
         return badRequest(new ValidationError(error))
-      }
+      }      
       const { name } = httpRequest.body      
       const genre = await this.addGenre.add(name)      
       if (!genre) {

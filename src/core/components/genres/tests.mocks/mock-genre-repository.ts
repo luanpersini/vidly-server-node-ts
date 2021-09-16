@@ -1,14 +1,14 @@
 import { GenreModel } from '../domain/genre'
-import { GenreRepository } from '../repositories/genre-repository'
-import { mockGenre } from '.'
+import { GenresRepository } from '../repositories/genres-repository'
+import { mockGenreModel } from '.'
 
-export const mockGenreRepository = (): GenreRepository => {
-  class GenreRepositoryStub implements GenreRepository {
+export const mockGenreRepository = (): GenresRepository => {
+  class GenreRepositoryStub implements GenresRepository {
     async add (name: string): Promise<GenreModel> {
-      return Promise.resolve(mockGenre())
+      return Promise.resolve(mockGenreModel())
     }
     async loadByName (name: string): Promise<GenreModel> {
-      return Promise.resolve(mockGenre())
+      return Promise.resolve(mockGenreModel())
     }
   }
   return new GenreRepositoryStub()

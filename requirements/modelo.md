@@ -13,6 +13,7 @@
     - config
       - routes
         [ ] component-name  
+        [ ] component-name integration test
 - core
   - components
     - component-name
@@ -27,13 +28,12 @@
       - repositories
         [ ] component-repository-i
         - infra.repository-implementation
-          [ ] component-repository-mongo
-          [ ] component-repository-sql    
+          [ ] component-mongo-repository
+          [ ] component-sql-repository    
       - user-interface.api.controllers
               - controller-name           
                     [ ] controller
                     [ ] controller test              
                   - infra.factories
                     [ ] controller-factory
-                    [ ] validation factory
-                    [ ] validation factory test       
+                     [ ] validationSchema inside controller-factory 

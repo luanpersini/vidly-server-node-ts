@@ -1,6 +1,6 @@
 import { GenreModel } from '../domain/genre';
 
-export interface GenreRepository {
+export interface GenresRepository {
   add: (name: string) => Promise<GenreModel>
   loadByName: (name: string) => Promise<GenreModel>
 }
