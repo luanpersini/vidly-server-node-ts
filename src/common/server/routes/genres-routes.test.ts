@@ -1,30 +1,17 @@
-import { Controller, Validation } from '@/common/interfaces'
-
-import { AddGenre } from '@genres/usecases/add-genre/add-genre'
-import { AddGenreController } from '@genres/user-interface.api.controllers/add-genre/add-genre-controller'
-import { AddGenreUsecase } from '@/core/components/genres/usecases/add-genre/add-genre-usecase'
 import { GenreExistsError } from '@/common/errors/genre-exists-error'
-import { GenreMongoRepository } from '@/core/components/genres/repositories/infra.genres-mongo-repository'
-import { JoiAdapter } from '@/common/validation/JoiAdapter'
+import { MissingParamError } from '@/common/errors'
 import { MongoHelper } from '@/infra/persistence/db/helpers/mongo-helper'
 import app from '@/common/server/config/app'
-import { makeAddGenreController } from '@/core/components/genres/user-interface.api.controllers/add-genre/infra.add-genre-controller-factory'
-import { mockAddGenre } from '@genres/tests.mocks'
-import { mockValidation } from '@/tests/mock-validation'
 import request from 'supertest'
 
-type SutTypes = {
-  sut: Controller  
-}
-
-const makeSut = (): SutTypes => {
-  const sut = makeAddGenreController()
-  return {
-    sut
-  }
-}
-
 describe('Genres Routes', () => {
+  const addGenreRoute = '/api/add-genre'
+  let name = 'any_genre'
+
+  const exec = () => {
+    return request(app).post(addGenreRoute).send({ name }).expect('Content-Type', /json/)
+  }
+
   beforeAll(async () => {
     await MongoHelper.connect(process.env.MONGO_URL)
   })
@@ -32,37 +19,29 @@ describe('Genres Routes', () => {
   afterAll(async () => {
     await MongoHelper.disconnect()
   })
-  const addGenreRoute = '/api/add-genre'
+
   describe('POST /add-genre', () => {
     test('should Return **Ok** with the created genre data', async () => {
-     await request(app)
-        .post(addGenreRoute)
-        .send({
-          name: 'any_genre'                  
-        })
-        .expect("Content-Type", /json/)
-        .expect(200)      
-    })
-    test('should return 400 on validation error', async () => {
-      await request(app)
-        .post(addGenreRoute)
-        .send({                         
-        })
-        .expect(400)      
+      const {status, body: result} = await exec()
+      expect(status).toBe(200)
+      expect(result).toBeTruthy()
+      expect(result.id).toBeTruthy()
+      expect(result.name).toEqual(name)
     })
     test('should return 403 if genre already exist', async () => {
-      const response = await request(app)
-        .post(addGenreRoute)
-        .send({
-          name: 'any_genre'                  
-        })
-        
-        expect(response.statusCode).toEqual(403) 
-        expect(response.body.error).toEqual(new GenreExistsError().message)             
+      const {status, body: result} = await exec()
+      expect(status).toBe(403)
+      expect(result.error).toEqual(new GenreExistsError().message)
+    })
+    test('should return 400 if name is not provided', async () => {
+      const {status, body: result} = await request(app).post(addGenreRoute).send({}).expect('Content-Type', /json/)
+      expect(status).toBe(400)
+      expect(result.error).toEqual(new MissingParamError('name').message)
+    })
+    test('should return 400 if validation error occurs', async () => {
+      name = ''
+      const {status, body: result} = await exec()
+      expect(status).toBe(400)
     })
   }) // End of Post Routes
-
-  
-}) //end
-
-
+}) //end of describe
