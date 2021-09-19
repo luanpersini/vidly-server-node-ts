@@ -32,12 +32,7 @@ describe('Genres Routes', () => {
       const {status, body: result} = await exec()
       expect(status).toBe(403)
       expect(result.error).toEqual(new GenreExistsError().message)
-    })
-    test('should return 400 if name is not provided', async () => {
-      const {status, body: result} = await request(app).post(addGenreRoute).send({}).expect('Content-Type', /json/)
-      expect(status).toBe(400)
-      expect(result.error).toEqual(new MissingParamError('name').message)
-    })
+    })   
     test('should return 400 if validation error occurs', async () => {
       name = ''
       const {status, body: result} = await exec()

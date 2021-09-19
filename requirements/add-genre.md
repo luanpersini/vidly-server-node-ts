@@ -21,7 +21,7 @@ Create and persist a new **genre**.
     - config
       - routes
         [x] component-name  
-        [ ] component-name integration test
+        [x] component-name integration test
 - core
   - components
     - component-name
@@ -36,7 +36,7 @@ Create and persist a new **genre**.
         [x] component-repository-i
         - infra.repository-implementation
           [x] component-mongo-repository     
-          [ ] component-mongo-repository test     
+          [x] component-mongo-repository test     
       - user-interface
           - Api.Controllers
               - controller-name           
