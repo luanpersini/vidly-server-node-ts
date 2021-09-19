@@ -24,7 +24,7 @@ Load all persisted **genres**.
       - domain
         [x] models (entities, aggregates e value objects)        
       - usecase-name
-        [ ] usecase interface
+        [x] usecase interface
         [ ] usecase implementation
         [ ] usecase test
         [ ] infra.usecase-name.factory
