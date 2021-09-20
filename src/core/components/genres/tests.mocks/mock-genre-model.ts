@@ -7,10 +7,10 @@ export const mockGenreModel = (): GenreModel => ({
 
 export const mockGenreModels = (): GenreModel[] => {
   return [{
-    id: 'any_id',
-    name: 'any_name'
+    id: 'Any_id',
+    name: 'Any_name'
   }, {
-    id: 'other_id',
-    name: 'other_name'
+    id: 'Other_id',
+    name: 'Other_name'
   }]
 }
