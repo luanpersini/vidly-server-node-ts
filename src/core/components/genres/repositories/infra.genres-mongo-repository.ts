@@ -9,7 +9,10 @@ export class GenreMongoRepository implements GenresRepository {
     const result = await genreCollection.insertOne({name})
     return MongoHelper.map(result.ops[0])
   }
-
+  async loadAll(): Promise<GenreModel[]> {  
+    // Not Implemented  
+    return null
+  }
   async loadByName(name: string): Promise<GenreModel> {
     const genreCollection = await MongoHelper.getCollection(this.collection)
     const result = await genreCollection.findOne({name})
