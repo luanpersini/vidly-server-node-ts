@@ -20,15 +20,18 @@ export const MongoHelper = {
     }       
     return this.client.db().collection(name)
   },
-//  async cleanup(collections) {    
+ //  async cleanup(collections: string[]): Promise<Collection> {    
 //     if (!this.client) {
 //       await this.connect(this.uri)
-//     }
-//      return Promise.all(collections.map((c: string) => this.client.db().collection(c).deleteMany({})))    
+//     }//     
+//     //  return Promise.all(collections.map((c: string) => this.client.db().collection(c).deleteMany({ })))    
 //   },
    
   map: (data: any): any => {
     const { _id, ...collectionWithoutId } = data
     return Object.assign({}, collectionWithoutId, { id: _id })
+  },
+  mapCollection: (collection: any[]): any[] => {
+    return collection.map(c => MongoHelper.map(c))
   }
 }
