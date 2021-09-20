@@ -25,11 +25,11 @@ Load all persisted **genres**.
         [x] models (entities, aggregates e value objects)        
       - usecase-name
         [x] usecase interface
-        [ ] usecase implementation
-        [ ] usecase test
+        [x] usecase implementation
+        [x] usecase test
         [ ] infra.usecase-name.factory
       - repositories
-        [ ] component-repository-i
+        [x] component-repository-i
         - infra.repository-implementation
           [ ] component-mongo-repository     
           [ ] component-mongo-repository test     
@@ -39,5 +39,4 @@ Load all persisted **genres**.
                     [x] controller
                     [x] controller test                    
                   - infra.factories
-                    [ ] controller-factory
-                    [ ] validationSchema inside controller-factory                     
+                    [ ] controller-factory                 

@@ -1,12 +1,9 @@
-import { HttpRequest, Validation } from '@/common/interfaces'
-import { badRequest, forbidden, ok, serverError } from '@/common/helpers/http-helper'
-import { mockAddGenre, mockGenreModel, mockGenreModels } from '../../tests.mocks'
+import { ok, serverError } from '@/common/helpers/http-helper'
 
-import { GenreExistsError } from '@/common/errors/genre-exists-error'
 import { LoadGenres } from '../../usecases/load-genres/load-genres'
 import { LoadGenresController } from './load-genres-controller'
+import { mockGenreModels } from '../../tests.mocks'
 import { mockLoadGenres } from '../../tests.mocks/mock-load-genres-usecase'
-import { mockValidation } from '@/tests/mock-validation'
 import { throwError } from '@/tests/test-helper'
 
 type SutTypes = {

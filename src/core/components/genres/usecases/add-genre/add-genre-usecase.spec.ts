@@ -20,7 +20,7 @@ const makeSut = (): SutTypes => {
 }
 const genre_name = 'any_name'
 
-describe('Genre Usecase', () => {
+describe('AddGenre Usecase', () => {
   test('should call GenresRepository.loadByName with the correct values', async () => {
     const { sut, genreRepositoryStub } = makeSut()
     const Spy = jest.spyOn(genreRepositoryStub, 'loadByName')
