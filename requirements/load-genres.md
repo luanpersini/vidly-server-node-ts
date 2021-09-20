@@ -27,16 +27,16 @@ Load all persisted **genres**.
         [x] usecase interface
         [x] usecase implementation
         [x] usecase test
-        [ ] infra.usecase-name.factory
+        [x] infra.usecase-name.factory
       - repositories
         [x] component-repository-i
         - infra.repository-implementation
-          [ ] component-mongo-repository     
-          [ ] component-mongo-repository test     
+          [x] component-mongo-repository     
+          [x] component-mongo-repository test     
       - user-interface
           - Api.Controllers
               - controller-name           
                     [x] controller
                     [x] controller test                    
                   - infra.factories
-                    [ ] controller-factory                 
+                    [x] controller-factory                 
