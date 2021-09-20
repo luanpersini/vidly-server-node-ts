@@ -37,11 +37,13 @@ Vidly is a movie rent plataform where you can manage movies, customers, rents an
 
 ## What was archieve so far - challanges
 
-*comming soon*
+So far, the only new challange was about the validation using {obj, schemas}, like joi and yup.
+
+**Status**: unfinished. This project was interrupted because it imposed few challanges. Instead, gonna work on NestJS framework - https://github.com/luanpersini/vidly-server-nestjs-ts
 
 **Archievements:**
 
-*comming soon*
+- Made a validation interface that uses schemas and is instanciated inside the controller, allowing it to be replaced.
 
 **Credits:**
 
