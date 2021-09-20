@@ -4,20 +4,20 @@ Load all persisted **genres**.
 
 ## Success
 
-1. - [ ] Receive a **GET** request on route **/api/load-genres**
-2. - [ ] Return **Ok** with the genres data
+1. - [x] Receive a **GET** request on route **/api/load-genres**
+2. - [x] Return **Ok** with the genres data
 <br/>
 
 ## Exceptions
 
-1. - [ ] Return **Unexpected Error** if something fail while trying to create the new genre
+1. - [x] Return **Unexpected Error** if something fails while trying to create the new genre
 
 - infra
   - Server
     - config
       - routes
-        [ ] component-name  
-        [ ] component-name integration test
+        [x] component-name  
+        [x] component-name integration test
 - core
   - components
     - component-name
