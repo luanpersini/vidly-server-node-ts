@@ -4,7 +4,7 @@
 
 The main objective of this project is to convert an higly coupled server APP built using NodeJS-Javascript-Mongoose to an low coupled APP using NodeJS-Typescript-MongoDb, following SOLID, TDD and Clean Code principles. The idea is to deal with the challanges of the conversion, focusing on the tecnologies instead of the bussiness rules of the App.
 
-The frontend can be fount at https://github.com/luanpersini/vidly-ts
+The frontend can be fount at https://github.com/luanpersini/vidly-front-react-ts
 
 **From:**
 
