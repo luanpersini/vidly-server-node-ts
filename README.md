@@ -2,21 +2,21 @@
 
 # Objectives
 
-The main objective of this project is to convert an higly coupled server APP built using NodeJS-Javascript-Mongoose to an low coupled APP using NodeJS-Typescript-MongoDb, following SOLID, TDD and Clean Code principles. The idea is to deal with the challanges of the conversion, focusing on the tecnologies instead of the bussiness rules and solutions that the App will delivery.
+The main objective of this project is to convert an higly coupled server APP built using NodeJS-Javascript-Mongoose to an low coupled APP using NodeJS-Typescript-MongoDb, following SOLID, TDD and Clean Code principles. The idea is to deal with the challanges of the conversion, focusing on the tecnologies instead of the bussiness rules of the App.
 
 The frontend can be fount at https://github.com/luanpersini/vidly-ts
 
 **From:**
 
-- NodeJS (higly coupled to express, mongoose and other libraries, few tests)
-- Javascript (no types)
-- Mongoose (higly coupled)
+- NodeJS 
+- Javascript
+- Mongoose 
 
 **To:**
 
-- NodeJS (low coupled - using ports and adapters)
-- Typescript (strongly typed)
-- MongoDB (low coupled)
+- NodeJS 
+- Typescript
+- MongoDB
 
 ## Vidly
 
@@ -39,7 +39,7 @@ Vidly is a movie rent plataform where you can manage movies, customers, rents an
 
 So far, the only new challange was about the validation using {obj, schemas}, like joi and yup.
 
-**Status**: unfinished. This project was interrupted because it imposed few challanges. Instead, gonna work on NestJS framework - https://github.com/luanpersini/vidly-server-nestjs-ts
+**Status**: unfinished. This project was interrupted. Instead, gonna work on NestJS framework - https://github.com/luanpersini/vidly-server-nestjs-ts
 
 **Archievements:**
 
