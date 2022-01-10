@@ -5,14 +5,18 @@ import app from '@/common/server/config/app'
 import request from 'supertest'
 
 describe('Genres Routes', () => {
-  const addGenreRoute = '/api/add-genre'
-  const loadGenresRoute = '/api/load-genres'
+  const addGenreRoute = '/api/genres/add-genre'
+  const loadGenresRoute = '/api/genres'
   let name = 'any_genre'
   const nameUpperFirst = 'Any_genre'
   let genreCollection: Collection
 
-  const exec = () => {
+  const execPost = () => {
     return request(app).post(addGenreRoute).send({ name }).expect('Content-Type', /json/)
+  }
+
+  const execGet = () => {
+    return request(app).get(loadGenresRoute).expect('Content-Type', /json/)
   }
 
   beforeAll(async () => {
@@ -30,7 +34,7 @@ describe('Genres Routes', () => {
 
   describe('POST /add-genre', () => {
     test('should Return **Ok** with the created genre data', async () => {
-      const {status, body: result} = await exec()
+      const {status, body: result} = await execPost()
       expect(status).toBe(200)
       expect(result).toBeTruthy()
       expect(result.id).toBeTruthy()
@@ -38,13 +42,13 @@ describe('Genres Routes', () => {
     })
     test('should return 403 if genre already exist', async () => {
       await genreCollection.insertOne({ name: nameUpperFirst })
-      const {status, body: result} = await exec()
+      const {status, body: result} = await execPost()
       expect(status).toBe(403)
       expect(result.error).toEqual(new GenreExistsError().message)
     })   
     test('should return 400 if validation error occurs', async () => {
       name = ''
-      const {status, body: result} = await exec()
+      const {status, body: result} = await execPost()
       expect(status).toBe(400)
     })
   }) // End of Add-Genres Routes
@@ -52,7 +56,7 @@ describe('Genres Routes', () => {
   describe('GET /load-genres', () => {
     test('should Return **Ok** with the list of genres', async () => {
       await genreCollection.insertMany([{ name: 'Any_name' },{ name: 'Other_name' }])
-      const {status, body: result} = await request(app).get(loadGenresRoute).send({}).expect('Content-Type', /json/)
+      const {status, body: result} = await execGet()
       expect(status).toBe(200)
       expect(result).toBeTruthy()
       expect(result[0].id).toBeTruthy()
@@ -61,7 +65,7 @@ describe('Genres Routes', () => {
       expect(result[1].name).toEqual('Other_name')
     })
     test('should return an empty list if no genres where found', async () => {      
-      const {status, body: result} = await request(app).get(loadGenresRoute).send({}).expect('Content-Type', /json/)      
+      const {status, body: result} = await execGet()      
       expect(status).toBe(200)
       expect(result).toBeTruthy()
       expect(result.length).toBe(0)

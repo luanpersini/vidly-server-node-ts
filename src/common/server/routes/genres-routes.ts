@@ -4,6 +4,6 @@ import { makeLoadGenresController } from '@/core/components/genres/user-interfac
 import { routeAdapter } from '@/infra/adapters/express-route-adapter'
 
 export default (router: Router): void => {
-  router.post('/add-genre', routeAdapter(makeAddGenreController()))
-  router.get('/load-genres', routeAdapter(makeLoadGenresController()))
+  router.post('/genres/add-genre', routeAdapter(makeAddGenreController()))
+  router.get('/genres', routeAdapter(makeLoadGenresController()))
 }
